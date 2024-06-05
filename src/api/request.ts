@@ -30,8 +30,8 @@ instance.interceptors.response.use(
   async (error: AxiosError<ErrorResponse>): Promise<AxiosError> => {
     const responseData: ErrorResponse | undefined = error.response?.data
     responseData && message.error(responseData.message)
-    // 401 no permission
-    if (error.response?.status === 401) {
+    // 401/403 no permission
+    if (error.response?.status === 401 || error.response?.status === 403) {
       const appStore = useAppStore()
       await appStore.logout()
     }
