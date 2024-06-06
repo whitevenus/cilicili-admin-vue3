@@ -1,13 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="page">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
-<style scoped>
-.page {
-  padding: 24px;
-}
-</style>
+<style scoped></style>

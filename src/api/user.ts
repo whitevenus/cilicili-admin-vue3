@@ -10,10 +10,10 @@ const list = (filter: UserFilter): Promise<ListResult<UserInfo>> => {
 }
 
 const create = (userCreateRequest: UserCreateRequest): Promise<UserInfo> => {
-  return request.post('/users', userCreateRequest)
+  return request.post('/user', userCreateRequest)
 }
 const edit = (id: string, userEditRequest: UserCreateRequest): Promise<UserInfo> => {
-  return request.post(`/users/${id}`, userEditRequest)
+  return request.post(`/user/${id}`, userEditRequest)
 }
 
 export default {

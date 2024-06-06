@@ -1,0 +1,9 @@
+web:
+  build: .
+  volumes:
+    - ./nginx/templates:/etc/nginx/templates
+
+  ports:
+    - '8086:80'
+  environment:
+    - APP_HOST_NAME=localhost

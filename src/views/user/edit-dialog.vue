@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { UserInfo } from '@/api/types'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { Ref } from 'vue'
-import userApi from '@/api/user'
-import message from '@/utils/message'
 
 interface Props {
   show: boolean
@@ -49,8 +47,11 @@ const defaultData: UserInfo = {
   roles: [],
   permissions: []
 }
-
 const user: Ref<UserInfo> = ref(props.data || defaultData)
+
+watch(props, (newValue) => {
+  user.value = newValue.data || defaultData
+})
 
 const handleConfirm = () => {
   emit('confirm', user.value)
@@ -65,7 +66,7 @@ const handleConfirm = () => {
     @close="$emit('close')"
     @confirm="handleConfirm"
   >
-    <t-form :data="user" :rules="rules">
+    <t-form :data="user" :rules="rules" class="dialog-form">
       <t-form-item label="用户名称" name="username">
         <t-input placeholder="请输入用户名称" v-model="user.username" />
       </t-form-item>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { PermissionState } from './types'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordName, RouteRecordRaw } from 'vue-router'
 import { routes, MENU_ROUTE_NAME } from '@/router'
 
 const filterRoutes = (routes: Array<RouteRecordRaw>, permissions: Array<string>) => {
@@ -20,6 +20,20 @@ const filterRoutes = (routes: Array<RouteRecordRaw>, permissions: Array<string>)
   })
 }
 
+const buildPermissionRoutesNameList = (routes: Array<RouteRecordRaw>) => {
+  let nameList: Array<RouteRecordName> = []
+  routes.forEach((route) => {
+    if (route.children) {
+      nameList.push(...buildPermissionRoutesNameList(route.children))
+    }
+
+    if (route.name) {
+      nameList.push(route.name)
+    }
+  })
+  return nameList
+}
+
 export const usePermissionStore = defineStore('permission', {
   state: (): PermissionState => ({ routes: [] }),
   actions: {
@@ -30,6 +44,9 @@ export const usePermissionStore = defineStore('permission', {
   getters: {
     menuRoutes(): Array<RouteRecordRaw> | undefined {
       return this.routes.find((route: RouteRecordRaw) => route.name === MENU_ROUTE_NAME)?.children
+    },
+    permissionRouteNamesList(): Array<RouteRecordName> {
+      return this.routes ? buildPermissionRoutesNameList(this.routes) : []
     }
   },
 

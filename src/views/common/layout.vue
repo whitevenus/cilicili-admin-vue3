@@ -8,8 +8,8 @@ import sidebar from '@/views/common/sidebar.vue'
     <sidebar></sidebar>
     <t-layout>
       <global-header></global-header>
-      <t-content><router-view></router-view></t-content>
-      <t-footer>Footer</t-footer>
+      <t-content class="content-layout"><router-view></router-view></t-content>
+      <t-footer style="text-align: center">Copyright @ 2024-2025 CiliCiliAdmin</t-footer>
     </t-layout>
   </t-layout>
 </template>
@@ -17,5 +17,8 @@ import sidebar from '@/views/common/sidebar.vue'
 <style lang="less" scoped>
 .main-layout {
   height: 100vh;
+  .content-layout {
+    padding: 24px;
+  }
 }
 </style>

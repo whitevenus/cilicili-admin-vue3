@@ -9,7 +9,7 @@ export const useSearch = <T, K>(api: Searchable<T>, searchKey: K) => {
   const pagination = reactive<PaginationProps>({
     current: 1,
     pageSize: 10,
-    total: 25
+    total: 0
   })
 
   const loading = ref(false)

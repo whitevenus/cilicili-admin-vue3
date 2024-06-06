@@ -1,0 +1,33 @@
+<script setup lang='ts'>
+  import type {
+  {{properCase modelName}}Info } from '@/api/types' import { computed, ref, watch } from 'vue'
+  import type { Ref } from 'vue' interface Props { show: boolean data:
+  {{properCase modelName}}Info | null } const props = withDefaults(defineProps<Props>(), { show:
+  false }) const rules = { name: [ { required: true, message: '{{labelName}}名称不能为空', trigger:
+  'blur' } ] } const emit = defineEmits(['close', 'confirm']) const visible = computed(() =>
+  props.show) const defaultData:
+  {{properCase modelName}}Info = { id: '', name: '' } const
+  {{camelCase modelName}}: Ref<{{properCase modelName}}Info> = ref(props.data || defaultData)
+  watch(props, (newValue) => {
+  {{camelCase modelName}}.value = newValue.data || defaultData }) const handleConfirm = () => {
+  emit('confirm',
+  {{camelCase modelName}}.value) }
+</script>
+
+<template>
+  <t-dialog
+    width='900px'
+    :visible='visible'
+    :header="{{camelCase modelName}}.id ? '编辑{{labelName}}' : '创建{{labelName}}'"
+    @close="$emit('close')"
+    @confirm='handleConfirm'
+  >
+    <t-form :data='{{camelCase modelName}}' :rules='rules' class='dialog-form'>
+      <t-form-item label='{{labelName}}名称' name='name'>
+        <t-input placeholder='请输入{{labelName}}名称' v-model='{{camelCase modelName}}.name' />
+      </t-form-item>
+    </t-form>
+  </t-dialog>
+</template>
+
+<style scoped></style>

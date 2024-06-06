@@ -1,0 +1,60 @@
+<script setup lang='ts'>
+  import { useSearch } from '@/composables/useSearch' import { Icon } from 'tdesign-vue-next' import
+  {{camelCase modelName}}Api from '@/api/{{dashCase modelName}}' import { reactive } from 'vue'
+  import type {
+  {{properCase modelName}}CreateRequest,
+  {{properCase modelName}}Info } from '@/api/types' import EditDialog from '@/views/{{editDialogPath}}'
+  import { useEditDialog } from '@/composables/useEditDialog' const columns = [{ colKey: 'id',
+  title: 'ID' }, { colKey: 'name', title: '{{labelName}}名称' }, { colKey: 'operation', title:
+  '操作' }] const searchKey = reactive({ name: '' }) const { data, fetchData, loading, pagination,
+  onPageChange } = useSearch<{{properCase modelName}}Info, { name: string }>({{camelCase
+    modelName
+  }}Api, searchKey) const { showDialog, editData, handleCreate, handleEdit, onDialogClose,
+  handleConfirm } = useEditDialog<{{properCase modelName}}Info,
+  {{properCase modelName}}CreateRequest>({{camelCase modelName}}Api, '{{labelName}}')
+</script>
+
+<template>
+  <t-card>
+    <div class='action-area'>
+      <t-button @click='handleCreate'>创建{{labelName}}</t-button>
+    </div>
+    <div class='search-area'>
+      <t-input
+        v-model='searchKey.name'
+        class='search-input'
+        placeholder='请输入{{labelName}}名称'
+      ></t-input>
+      <t-button @click='fetchData'>
+        <template #icon>
+          <icon name='search'></icon>
+        </template>
+      </t-button>
+    </div>
+    <t-table
+      :columns='columns'
+      :loading='loading'
+      row-key='index'
+      :data='data'
+      :pagination='pagination'
+      @page-change='onPageChange'
+    >
+      <template #operation='slotProps'>
+        <t-button variant='text' theme='primary' @click='handleEdit(slotProps)'>
+          <template #icon>
+            <icon name='edit'></icon>
+          </template>
+          编辑
+        </t-button>
+      </template>
+    </t-table>
+  </t-card>
+  <edit-dialog
+    :show='showDialog'
+    :data='editData'
+    @close='onDialogClose'
+    @confirm='handleConfirm'
+  ></edit-dialog>
+</template>
+
+<style lang='less' scoped></style>

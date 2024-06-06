@@ -1,0 +1,24 @@
+import type { 
+  ListResult, 
+  {{ properCase modelName }}CreateRequest, 
+  {{ properCase modelName }}Filter, 
+  {{ properCase modelName }}Info } from './types'
+import request from '@/api/request'
+
+
+const list = (filter: {{ properCase modelName }}Filter): Promise<ListResult<{{ properCase modelName }}Info>> => {
+  return request.get('/{{ camelCase modelName }}s', { params: filter })
+}
+
+const create = ({{ camelCase modelName }}CreateRequest: {{ properCase modelName }}CreateRequest): Promise<{{ properCase modelName }}Info> => {
+  return request.post('/{{ camelCase modelName }}s', {{ camelCase modelName }}CreateRequest)
+}
+const edit = (id: string, {{ camelCase modelName }}EditRequest: {{ properCase modelName }}CreateRequest): Promise<{{ properCase modelName }}Info> => {
+  return request.post(`/{{ camelCase modelName }}s/${id}`, {{ camelCase modelName }}EditRequest)
+}
+
+export default {
+  list,
+  create,
+  edit
+}

@@ -15,6 +15,13 @@ export type UserInfo = {
   permissions: Array<string>
 }
 
+export type RoleInfo = {
+  id: string
+  name: string
+  label: string
+  permissions: Array<string>
+}
+
 export interface Paging {
   page?: number
   size?: number
@@ -29,6 +36,12 @@ export type ListResult<T> = {
 export interface UserFilter extends Paging {
   name: string
 }
+
+export interface RoleFilter extends Paging {
+  name: string
+  label: string
+}
+
 export interface Searchable<T> {
   list(filter: object): Promise<ListResult<T>>
 }
@@ -43,3 +56,10 @@ export interface UserCreateRequest {
   nickname: string
   roles?: Array<string>
 }
+
+export interface RoleCreateRequest {
+  name: string
+  label: string
+  permissions: Array<string>
+}
+
