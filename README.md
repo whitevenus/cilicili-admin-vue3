@@ -1,18 +1,22 @@
-# cilicili-admin-vue3
+# cilicili-admin
 
-This template should help get you started developing with Vue 3 in Vite.
+cilicili-admin is a frontend scaffolding corresponding to the traditional backend, it is based on Vue3 with TDesign implementation, using Typscript, can help you quickly start the enterprise-level middle and backend prototype site.
+
+This template can help you quickly develop projects based on Vite using Vue3.
+
+## Demo
+
+[Live Demo](https://main--cilicili-admin-vue3.netlify.app/#/login)
+
+### Default account
+
+**username**： admin
+
+**password**：admin123
 
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -37,3 +41,35 @@ pnpm build
 ```sh
 pnpm lint
 ```
+
+## Feature
+
+- [X] Login/Logout
+- [ ] permission verification 
+    - [ ] dynamic routing
+    - [X] permission instruction
+- [X] utility component
+    - [X] ECharts
+    - [ ] Upload component
+        - [ ] Normal Upload
+        - [ ] endpoint retransmission
+        - [ ] Avatar upload (crop upload)
+- [X] dashboard
+- [X] User manage
+- [X] Role manage
+- [x] table
+    - [x] Basic Forms
+    - [ ] Inline Edit
+- [ ] Editor
+    - [ ] MarkDown
+    - [ ] Rich Text
+    - [ ] JSON Editor
+- [X] Error Page
+    - [X] 403
+    - [X] 404
+    - [ ] 500
+- [ ] Guide
+- [X] CURD Template Generator
+- [X] Image Packaging Mechanism
+- [ ] multilanguage
+
