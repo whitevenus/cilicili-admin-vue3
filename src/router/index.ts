@@ -89,9 +89,6 @@ const whiteList: Array<RouteRecordName> = ['login', 'not-found', 'not-allowed']
 // router Guard
 router.beforeEach((to, from) => {
   const appStore = useAppStore()
-  console.log(111)
-  console.log(to)
-  console.log(to.name)
   if (to.name) {
     const PermissionStore = usePermissionStore()
     const hasNoPermission = !PermissionStore.permissionRouteNamesList.includes(to.name)
